@@ -31,19 +31,19 @@ class VendingMachine {
             return nil
         }
         
-        if kindOfDrink == Drink.COKE && self.quantityOfDietCoke == 0 {
+        if kindOfDrink == Drink.COKE && quantityOfCoke == 0 {
             charge += i
             return nil
-        } else if kindOfDrink == Drink.DIET_COKE && self.quantityOfDietCoke == 0 {
+        } else if kindOfDrink == Drink.DIET_COKE && quantityOfDietCoke == 0 {
             charge += i
             return nil
-        } else if kindOfDrink == Drink.TEA && self.quantityOfTea == 0 {
+        } else if kindOfDrink == Drink.TEA && quantityOfTea == 0 {
             charge += i
             return nil
         }
         
         // 釣り銭不足
-        if 1 == 500 && numberOf100Yen < 4 {
+        if i == 500 && numberOf100Yen < 4 {
             charge += i
             return nil
         }
@@ -53,7 +53,7 @@ class VendingMachine {
             numberOf100Yen += 1
         } else if i == 500 {
             // 400円のお釣り
-            charge += 1 - 100
+            charge += i - 100
             // 100円玉を釣り銭に使える
             numberOf100Yen -= (i - 100) / 100
         }
