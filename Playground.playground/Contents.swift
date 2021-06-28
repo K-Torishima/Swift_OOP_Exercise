@@ -76,3 +76,18 @@ class VendingMachine {
         return result
     }
 }
+
+
+/// クライアント
+let vm = VendingMachine()
+let drink = vm.buy(i: 500, kindOfDrink: Drink.COKE)
+let charge = vm.refund()
+
+if drink != nil && drink?.getKind() == Drink.COKE {
+    print("コーラを購入しました")
+    print("お釣りは、\(charge)　です")
+} else {
+    print("コーラを買えませんでした")
+}
+
+
