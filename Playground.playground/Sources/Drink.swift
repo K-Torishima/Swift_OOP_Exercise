@@ -6,13 +6,13 @@ open class Drink {
     public static let DIET_COKE = 1
     public static let TEA = 2
     
-    private let kind: Int
+    private let kind: DrinkType
     
-    public init(kind: Int) {
+    public init(kind: DrinkType) {
         self.kind = kind
     }
     
-    public func getKind() -> Int {
+    public func getKind() -> DrinkType {
         return kind
     }
 }

@@ -7,20 +7,20 @@ class VendingMachine {
     var stockOf100Yen: Int = 10
     var charge: Int = 0
     
-    func buy(payment: Int, selectOfDrink: Int) -> Drink? {
+    func buy(payment: Int, selectOfDrink: DrinkType) -> Drink? {
         // 100円と500円だけ受け付ける
         if payment != 100 && payment != 500 {
             charge += payment
             return nil
         }
         
-        if selectOfDrink == Drink.COKE && stockOfCoke == 0 {
+        if selectOfDrink == DrinkType.COKE && stockOfCoke == 0 {
             charge += payment
             return nil
-        } else if selectOfDrink == Drink.DIET_COKE && stockOfDietCoke == 0 {
+        } else if selectOfDrink == DrinkType.DIET_COKE && stockOfDietCoke == 0 {
             charge += payment
             return nil
-        } else if selectOfDrink == Drink.TEA && stockityOfTea == 0 {
+        } else if selectOfDrink == DrinkType.TEA && stockityOfTea == 0 {
             charge += payment
             return nil
         }
@@ -41,9 +41,9 @@ class VendingMachine {
             stockOf100Yen -= (payment - 100) / 100
         }
         
-        if selectOfDrink == Drink.COKE {
+        if selectOfDrink == DrinkType.COKE {
             stockOfCoke -= 1
-        } else if selectOfDrink == Drink.DIET_COKE {
+        } else if selectOfDrink == DrinkType.DIET_COKE {
             stockOfDietCoke -= 1
         } else {
             stockityOfTea -= 1
@@ -63,7 +63,7 @@ class VendingMachine {
 
 /// クライアント
 struct Client {
-    func main(money: Int, select: Int) {
+    func main(money: Int, select: DrinkType) {
         let vm = VendingMachine()
         let drink = vm.buy(payment: money, selectOfDrink: select)
         let charge = vm.refund()
@@ -78,4 +78,4 @@ struct Client {
 }
 
 let client = Client()
-client.main(money: 500, select: Drink.COKE)
+client.main(money: 500, select: DrinkType.COKE)
