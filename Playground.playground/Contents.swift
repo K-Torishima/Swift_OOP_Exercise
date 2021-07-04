@@ -1,55 +1,55 @@
 import Foundation
 
 class VendingMachine {
-    var quantityOfCoke: Int = 5
-    var quantityOfDietCoke: Int = 5
-    var quantityOfTea: Int = 5
-    var numberOf100Yen: Int = 10
+    var stockOfCoke: Int = 5
+    var stockOfDietCoke: Int = 5
+    var stockityOfTea: Int = 5
+    var stockOf100Yen: Int = 10
     var charge: Int = 0
     
-    func buy(i: Int, kindOfDrink: Int) -> Drink? {
+    func buy(payment: Int, selectOfDrink: Int) -> Drink? {
         // 100円と500円だけ受け付ける
-        if i != 100 && i != 500 {
-            charge += i
+        if payment != 100 && payment != 500 {
+            charge += payment
             return nil
         }
         
-        if kindOfDrink == Drink.COKE && quantityOfCoke == 0 {
-            charge += i
+        if selectOfDrink == Drink.COKE && stockOfCoke == 0 {
+            charge += payment
             return nil
-        } else if kindOfDrink == Drink.DIET_COKE && quantityOfDietCoke == 0 {
-            charge += i
+        } else if selectOfDrink == Drink.DIET_COKE && stockOfDietCoke == 0 {
+            charge += payment
             return nil
-        } else if kindOfDrink == Drink.TEA && quantityOfTea == 0 {
-            charge += i
+        } else if selectOfDrink == Drink.TEA && stockityOfTea == 0 {
+            charge += payment
             return nil
         }
         
         // 釣り銭不足
-        if i == 500 && numberOf100Yen < 4 {
-            charge += i
+        if payment == 500 && stockOf100Yen < 4 {
+            charge += payment
             return nil
         }
         
-        if i == 100 {
+        if payment == 100 {
             // 100円玉を釣り銭に使える
-            numberOf100Yen += 1
-        } else if i == 500 {
+            stockOf100Yen += 1
+        } else if payment == 500 {
             // 400円のお釣り
-            charge += i - 100
+            charge += payment - 100
             // 100円玉を釣り銭に使える
-            numberOf100Yen -= (i - 100) / 100
+            stockOf100Yen -= (payment - 100) / 100
         }
         
-        if kindOfDrink == Drink.COKE {
-            quantityOfCoke -= 1
-        } else if kindOfDrink == Drink.DIET_COKE {
-            quantityOfDietCoke -= 1
+        if selectOfDrink == Drink.COKE {
+            stockOfCoke -= 1
+        } else if selectOfDrink == Drink.DIET_COKE {
+            stockOfDietCoke -= 1
         } else {
-            quantityOfTea -= 1
+            stockityOfTea -= 1
         }
         
-        return Drink(kind: kindOfDrink)
+        return Drink(kind: selectOfDrink)
     }
     
     // お釣りを取り出す.
@@ -65,7 +65,7 @@ class VendingMachine {
 struct Client {
     func main(money: Int, select: Int) {
         let vm = VendingMachine()
-        let drink = vm.buy(i: money, kindOfDrink: select)
+        let drink = vm.buy(payment: money, selectOfDrink: select)
         let charge = vm.refund()
         
         if drink != nil && drink?.getKind() == select {
@@ -79,6 +79,3 @@ struct Client {
 
 let client = Client()
 client.main(money: 500, select: Drink.COKE)
-
-
-
