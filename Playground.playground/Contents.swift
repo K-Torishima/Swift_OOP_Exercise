@@ -1,22 +1,5 @@
 import Foundation
 
-class Drink {
-    
-    public static let COKE = 0
-    public static let DIET_COKE = 1
-    public static let TEA = 2
-    
-    private let kind: Int
-    
-    init(kind: Int) {
-        self.kind = kind
-    }
-    
-    func getKind() -> Int {
-        return kind
-    }
-}
-
 class VendingMachine {
     var quantityOfCoke: Int = 5
     var quantityOfDietCoke: Int = 5
