@@ -15,4 +15,8 @@ public class Stock {
     public func decrement() {
         self.quantity -= 1
     }
+    
+    public func isEmpty() -> Bool {
+        return self.quantity == 0
+    }
 }

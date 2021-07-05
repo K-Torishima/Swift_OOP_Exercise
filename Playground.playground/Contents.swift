@@ -14,13 +14,13 @@ class VendingMachine {
             return nil
         }
         
-        if selectOfDrink == DrinkType.COKE && stockOfCoke.getQuantity() == 0 {
+        if selectOfDrink == DrinkType.COKE && stockOfCoke.isEmpty() {
             charge += payment
             return nil
-        } else if selectOfDrink == DrinkType.DIET_COKE && stockOfDietCoke.getQuantity() == 0 {
+        } else if selectOfDrink == DrinkType.DIET_COKE && stockOfDietCoke.isEmpty() {
             charge += payment
             return nil
-        } else if selectOfDrink == DrinkType.TEA && stockityOfTea.getQuantity() == 0 {
+        } else if selectOfDrink == DrinkType.TEA && stockityOfTea.isEmpty() {
             charge += payment
             return nil
         }
