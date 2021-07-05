@@ -1,18 +1,22 @@
 import Foundation
 
-open class Drink {
+public class Drink {
     
-    public static let COKE = 0
-    public static let DIET_COKE = 1
-    public static let TEA = 2
+    private var kind: DrinkType
     
-    private let kind: DrinkType
-    
-    public init(kind: DrinkType) {
+    init(kind: DrinkType) {
         self.kind = kind
     }
     
-    public func getKind() -> DrinkType {
-        return kind
+    public func isCoke() -> Bool {
+        return kind == DrinkType.COKE
+    }
+    
+    public func isDietCoke() -> Bool {
+        return kind == DrinkType.DIET_COKE
+    }
+    
+    public func isTea() -> Bool {
+        return kind == DrinkType.TEA
     }
 }
