@@ -1,9 +1,9 @@
 import Foundation
 
 class VendingMachine {
-    var stockOfCoke: Int = 5
-    var stockOfDietCoke: Int = 5
-    var stockityOfTea: Int = 5
+    var stockOfCoke: Stock = Stock(quantity: 5)
+    var stockOfDietCoke:Stock = Stock(quantity: 5)
+    var stockityOfTea: Stock = Stock(quantity: 5)
     var stockOf100Yen: Int = 10
     var charge: Int = 0
     
@@ -14,13 +14,13 @@ class VendingMachine {
             return nil
         }
         
-        if selectOfDrink == DrinkType.COKE && stockOfCoke == 0 {
+        if selectOfDrink == DrinkType.COKE && stockOfCoke.getQuantity() == 0 {
             charge += payment
             return nil
-        } else if selectOfDrink == DrinkType.DIET_COKE && stockOfDietCoke == 0 {
+        } else if selectOfDrink == DrinkType.DIET_COKE && stockOfDietCoke.getQuantity() == 0 {
             charge += payment
             return nil
-        } else if selectOfDrink == DrinkType.TEA && stockityOfTea == 0 {
+        } else if selectOfDrink == DrinkType.TEA && stockityOfTea.getQuantity() == 0 {
             charge += payment
             return nil
         }
@@ -42,11 +42,11 @@ class VendingMachine {
         }
         
         if selectOfDrink == DrinkType.COKE {
-            stockOfCoke -= 1
+            stockOfCoke.decrement()
         } else if selectOfDrink == DrinkType.DIET_COKE {
-            stockOfDietCoke -= 1
+            stockOfDietCoke.decrement()
         } else {
-            stockityOfTea -= 1
+            stockityOfTea.decrement()
         }
         
         return Drink(kind: selectOfDrink)
