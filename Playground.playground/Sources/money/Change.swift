@@ -11,8 +11,9 @@ public class Change {
         self.coins.append(contentsOf: coins)
     }
     
-//    public func getAmount() -> Money {
-//        return self.coins.map(Coin.toMoney)
-//    }
-
+    public func getAmount() -> Money {
+        return self.coins.map(Coin.toMoney).reduce(into: Money(amount: 0)) { sum, money in
+            sum.add(money: money())
+        }
+    }
 }
